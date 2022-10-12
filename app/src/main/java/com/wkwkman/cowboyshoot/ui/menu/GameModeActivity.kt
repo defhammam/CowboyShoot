@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.wkwkman.cowboyshoot.R
 import com.wkwkman.cowboyshoot.databinding.ActivityGameModeBinding
+import com.wkwkman.cowboyshoot.ui.game.GameActivity
 import com.wkwkman.cowboyshoot.ui.onboarding.entername.EnterNameFragment
 
 class GameModeActivity : AppCompatActivity() {
@@ -32,11 +33,13 @@ class GameModeActivity : AppCompatActivity() {
         binding.llModePvc.setOnClickListener {
             val pvcSelectedMessage = "Current Game Mode:\nPlayer VS Computer"
             Toast.makeText(this@GameModeActivity, pvcSelectedMessage, Toast.LENGTH_SHORT).show()
+            GameActivity.startActivity(this, false)
         }
         
         binding.llModePvp.setOnClickListener {
             val pvpSelectedMessage = "Current Game Mode:\nPlayer VS Player"
             Toast.makeText(this@GameModeActivity, pvpSelectedMessage, Toast.LENGTH_SHORT).show()
+            GameActivity.startActivity(this, true)
         }
     }
 }

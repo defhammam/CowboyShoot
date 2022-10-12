@@ -1,10 +1,13 @@
 package com.wkwkman.cowboyshoot.ui.game
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.wkwkman.cowboyshoot.R
 import com.wkwkman.cowboyshoot.databinding.ActivityGameBinding
 import com.wkwkman.cowboyshoot.enum.GameState
@@ -13,14 +16,21 @@ import com.wkwkman.cowboyshoot.enum.PlayerSide
 import com.wkwkman.cowboyshoot.manager.CowboyGameManagerImpl
 import com.wkwkman.cowboyshoot.manager.CowboyGameListener
 import com.wkwkman.cowboyshoot.manager.CowboyGameManager
+import com.wkwkman.cowboyshoot.manager.MultiplayerCowboyGameManager
 import com.wkwkman.cowboyshoot.model.Player
 
 class GameActivity: AppCompatActivity(), CowboyGameListener {
     private val binding: ActivityGameBinding by lazy {
         ActivityGameBinding.inflate(layoutInflater)
     }
+    private val isUsingMultiplayerMode: Boolean by lazy {
+        intent.getBooleanExtra(EXTRAS_MULTIPLAYER_MODE, false)
+    }
     private val cowboyGameManager: CowboyGameManager by lazy {
-        CowboyGameManagerImpl(this)
+        if (isUsingMultiplayerMode)
+            MultiplayerCowboyGameManager(this)
+        else
+            CowboyGameManagerImpl(this)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,17 +90,46 @@ class GameActivity: AppCompatActivity(), CowboyGameListener {
     }
     override fun onGameStateChanged(gameState: GameState) {
         binding.tvStatusGame.text = ""
-        binding.tvActionGame.text = when (gameState) {
-            GameState.IDLE -> getString(R.string.text_start)
-            GameState.STARTED -> getString(R.string.text_fire)
-            GameState.FINISHED -> getString(R.string.text_restart)
+        when (gameState) {
+            GameState.IDLE -> {
+                binding.tvActionGame.text = getString(R.string.text_fire)
+                setCharacterVisibility(isPlayerOneVisible = true, isPlayerTwoVisible = true)
+            }
+            GameState.STARTED -> {
+                binding.tvActionGame.text = getString(R.string.text_fire)
+                setCharacterVisibility(isPlayerOneVisible = true, isPlayerTwoVisible = true)
+            }
+            GameState.FINISHED -> {
+                binding.tvActionGame.text = getString(R.string.text_restart)
+                setCharacterVisibility(isPlayerOneVisible = true, isPlayerTwoVisible = true)
+            }
+            GameState.TURN_PLAYER_ONE -> {
+                binding.tvActionGame.text = getString(R.string.text_lock_player)
+                setCharacterVisibility(isPlayerOneVisible = true, isPlayerTwoVisible = false)
+            }
+            GameState.TURN_PLAYER_TWO -> {
+                binding.tvActionGame.text = getString(R.string.text_fire)
+                setCharacterVisibility(isPlayerOneVisible = false, isPlayerTwoVisible = true)
+            }
         }
+    }
+    private fun setCharacterVisibility(isPlayerOneVisible: Boolean, isPlayerTwoVisible: Boolean) {
+        binding.llPlayer.isVisible = isPlayerOneVisible
+        binding.llBot.isVisible = isPlayerTwoVisible
     }
     override fun onGameFinished(gameState: GameState, theWinner: Player) {
         if (theWinner.playerSide == PlayerSide.PLAYER_ONE) {
             binding.tvStatusGame.text = getString(R.string.text_you_win)
         } else {
             binding.tvStatusGame.text = getString(R.string.text_you_lose)
+        }
+    }
+    companion object {
+        private const val EXTRAS_MULTIPLAYER_MODE = "EXTRAS_MULTIPLAYER_MODE"
+        fun startActivity(context: Context, isMultiplayer: Boolean) {
+            context.startActivity(Intent(context, GameActivity::class.java).apply {
+                putExtra(EXTRAS_MULTIPLAYER_MODE, isMultiplayer)
+            })
         }
     }
 }
