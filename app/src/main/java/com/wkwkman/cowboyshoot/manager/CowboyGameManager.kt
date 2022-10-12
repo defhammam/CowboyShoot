@@ -21,7 +21,7 @@ interface CowboyGameListener {
     fun onGameFinished(gameState: GameState, theWinner: Player)
 }
 
-class ComputerCowboyGameManager(private val listener: CowboyGameListener): CowboyGameManager {
+class CowboyGameManagerImpl(private val listener: CowboyGameListener): CowboyGameManager {
     private lateinit var player: Player
     private lateinit var bot: Player
     private lateinit var gameState: GameState

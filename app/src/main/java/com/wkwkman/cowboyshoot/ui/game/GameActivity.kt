@@ -10,7 +10,7 @@ import com.wkwkman.cowboyshoot.databinding.ActivityGameBinding
 import com.wkwkman.cowboyshoot.enum.GameState
 import com.wkwkman.cowboyshoot.enum.PlayerPosition
 import com.wkwkman.cowboyshoot.enum.PlayerSide
-import com.wkwkman.cowboyshoot.manager.ComputerCowboyGameManager
+import com.wkwkman.cowboyshoot.manager.CowboyGameManagerImpl
 import com.wkwkman.cowboyshoot.manager.CowboyGameListener
 import com.wkwkman.cowboyshoot.manager.CowboyGameManager
 import com.wkwkman.cowboyshoot.model.Player
@@ -20,7 +20,7 @@ class GameActivity: AppCompatActivity(), CowboyGameListener {
         ActivityGameBinding.inflate(layoutInflater)
     }
     private val cowboyGameManager: CowboyGameManager by lazy {
-        ComputerCowboyGameManager(this)
+        CowboyGameManagerImpl(this)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
