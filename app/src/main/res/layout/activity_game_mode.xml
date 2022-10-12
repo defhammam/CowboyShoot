@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/teal_700"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.menu.GameModeActivity">
+    
+    <LinearLayout
+        android:id="@+id/ll_mode_header"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_100sdp"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_100sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        
+        <TextView
+            android:id="@+id/tv_player_welcome"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pixelated_font"
+            android:textSize="@dimen/_24ssp"
+            android:textAllCaps="true"
+            tools:text="welcome, player!" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/pixelated_font"
+            android:textSize="@dimen/_24ssp"
+            android:textAllCaps="true"
+            android:text="@string/text_mode_pick_one" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:layout_constraintTop_toBottomOf="@id/ll_mode_header"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        
+        <LinearLayout
+            android:id="@+id/ll_mode_pvc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <ImageView
+                android:layout_width="@dimen/_105sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:contentDescription="@string/desc_ic_vs_bot"
+                android:src="@drawable/ic_vs_computer"
+                android:layout_gravity="center" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/pixelated_font"
+                android:textSize="@dimen/_16ssp"
+                android:textAllCaps="true"
+                android:text="@string/text_mode_pvc" />
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_mode_pvp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <ImageView
+                android:layout_width="@dimen/_105sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:contentDescription="@string/desc_ic_vs_player"
+                android:src="@drawable/ic_vs_player"
+                android:layout_gravity="center" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/pixelated_font"
+                android:textSize="@dimen/_16ssp"
+                android:textAllCaps="true"
+                android:text="@string/text_mode_pvp" />
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

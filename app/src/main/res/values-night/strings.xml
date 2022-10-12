@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CowboyShoot</string>
+    <string name="bg_game_description">Background of the app</string>
+    <string name="arrow_down_description">Red arrow button pointing downward</string>
+    <string name="arrow_up_description">Red arrow button pointing upward</string>
+    <string name="player_top_description">Initiated position of the player to be at the upper side</string>
+    <string name="player_middle_description">Initiated position of the player to be in the middle</string>
+    <string name="player_bottom_description">Initiated position of the player to be below the middle</string>
+    <string name="bot_top_description">Initiated position of the bot to be at the upper side</string>
+    <string name="bot_middle_description">Initiated position of the bot to be in the middle</string>
+    <string name="bot_bottom_description">Initiated position of the bot to be below the middle</string>
+    <string name="text_you_win">Player 1 Wins</string>
+    <string name="text_you_lose">Player 1 loses</string>
+    <string name="text_start">start</string>
+    <string name="text_fire">fire</string>
+    <string name="text_restart">restart</string>
+    <string name="text_title_onboarding_1">Welcome to CowboyShoot!</string>
+    <string name="text_desc_onboarding_1">This is a simple game made using Android Studio</string>
+    <string name="text_title_onboarding_2">Let\'s get started</string>
+    <string name="text_desc_onboarding_2">You only need to evade enemy\'s bullet to win</string>
+    <string name="text_title_splash">cowboy shoot</string>
+    <string name="desc_cowboy_left">Left cowboy logo</string>
+    <string name="desc_cowboy_right">Right cowboy logo</string>
+    <string name="text_hint_name">Name</string>
+    <string name="text_mode_pick_one">select one of the modes:</string>
+    <string name="desc_ic_vs_bot">Logo of vs bot</string>
+    <string name="text_mode_pvc">player vs computer</string>
+    <string name="desc_ic_vs_player">Logo of vs player</string>
+    <string name="text_mode_pvp">player vs player</string>
+    <string name="set_name">proceed</string>
+    <string name="text_enter_name_header">enter your name:</string>
+</resources>
